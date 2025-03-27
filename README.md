@@ -2,6 +2,8 @@
 
 Веб-приложение для SPA-отеля, разработанное на Django. Сайт предоставляет информацию об услугах отеля, позволяет просматривать фотогалерею и оставлять отзывы.
 
+🌐 **Сайт доступен по адресу:** [https://spa-hotel-3.onrender.com/](https://spa-hotel-3.onrender.com/)
+
 ## Основной функционал
 
 - Просмотр информации об отеле и предоставляемых услугах
@@ -18,6 +20,7 @@
 - SQLite
 - Bootstrap 5
 - Font Awesome
+- Gunicorn (для production)
 
 ## Установка и запуск
 
@@ -60,9 +63,36 @@ python manage.py runserver
 
 spa_hotel/
 ├── main/ # Основное приложение
-├── static/ # Статические файлы (CSS, изображения)
-│ ├── css/ # Стили
+│ ├── migrations/ # Миграции базы данных
+│ ├── admin.py # Настройки админ-панели
+│ ├── context_processors.py
+│ ├── forms.py # Формы
+│ ├── models.py # Модели данных
+│ ├── urls.py # URL маршруты
+│ └── views.py # Представления
+├── spa_hotel/ # Настройки проекта
+│ ├── settings.py # Основные настройки
+│ ├── urls.py # Главные URL маршруты
+│ └── wsgi.py # WSGI конфигурация
+├── static/ # Статические файлы
+│ ├── css/ # CSS стили
 │ ├── uploads/ # Загруженные изображения
 │ └── videos/ # Видеофайлы
 ├── templates/ # HTML шаблоны
-└── spa_hotel/ # Настройки проекта
+│ ├── admin/ # Шаблоны админки
+│ │ ├── panel.html
+│ │ └── page_form.html
+│ ├── registration/ # Шаблоны авторизации
+│ │ └── logged_out.html
+│ ├── base.html # Базовый шаблон
+│ ├── contacts.html # Страница контактов
+│ ├── feedback.html # Страница отзывов
+│ ├── gallery.html # Галерея
+│ ├── index.html # Главная страница
+│ ├── login.html # Страница входа
+│ ├── page_view.html # Шаблон для отображения страниц
+│ └── services.html # Страница услуг
+├── manage.py # Скрипт управления
+├── requirements.txt # Зависимости проекта
+└── README.md # Документация
+
