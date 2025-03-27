@@ -1,0 +1,52 @@
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    font-size: 30px;
+    color: #ddd;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label {
+    color: #ffd700;
+}
+
+.stars {
+    color: #ffd700;
+    font-size: 20px;
+}
+
+.hero-image {
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.hero-image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Стили для форм */
+.invalid-feedback {
+    display: block;
+    color: #dc3545;
+}
+
+.form-text {
+    color: #6c757d;
+    font-size: 0.875em;
+}
+
+/* Стили для текстового редактора */
+textarea.form-control {
+    min-height: 200px;
+} 

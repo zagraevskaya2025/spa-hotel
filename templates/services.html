@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Услуги и цены{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-5">Наши услуги и цены</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Услуга</th>
+                <th>Описание</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Дневной SPA-пасс</td>
+                <td>Доступ к аквазоне и термальной зоне на 1 день</td>
+                <td>3 000 ₽</td>
+            </tr>
+            <tr>
+                <td>Ужин в ресторане</td>
+                <td>Фирменное меню на двоих в нашем ресторане с видом на горы</td>
+                <td>4 500 ₽</td>
+            </tr>
+            <tr>
+                <td>Панорамная экскурсия</td>
+                <td>Прогулка с гидом по тропе счастья и панорамной террасе</td>
+                <td>5 000 ₽</td>
+            </tr>
+            <tr>
+                <td>Проживание (1 ночь)</td>
+                <td>Комфортный номер с видом на Кавказские горы</td>
+                <td>от 7 900 ₽</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

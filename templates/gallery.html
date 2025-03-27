@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Наши зоны{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>SPA-зоны и отдых</h2>
+        {% if user.is_authenticated %}
+            <a href="{% url 'admin:main_galleryimage_add' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Добавить изображение
+            </a>
+        {% endif %}
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <!-- Предустановленные изображения -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'uploads/aqua.jpg' %}" class="card-img-top gallery-image" alt="Аквазона">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Аквазона 💧</h5>
+                    <p class="card-text">Просторный бассейн с подогревом, гейзерами и водопадами.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'uploads/terma.jpg' %}" class="card-img-top gallery-image" alt="Термальная зона">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Термальная зона ♨️</h5>
+                    <p class="card-text">Сауна, парная и кедровая бочка для глубокого расслабления.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'uploads/mountain.jpg' %}" class="card-img-top gallery-image" alt="Вид на горы">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Вид на горы 🏔️</h5>
+                    <p class="card-text">Панорамная терраса с видом на Кавказские горы и Эльбрус.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'uploads/restoran.png' %}" class="card-img-top gallery-image" alt="Ресторан">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Ресторан 🍽️</h5>
+                    <p class="card-text">Уютный ресторан с авторской кухней и свежими продуктами.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{% static 'uploads/счастье.png' %}" class="card-img-top gallery-image" alt="Тропа счастья">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Тропа счастья 🌄</h5>
+                    <p class="card-text">Легендарное место на вершине горы с видом, от которого захватывает дух.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Динамически загруженные изображения -->
+        {% for image in images %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="{{ image.image.url }}" class="card-img-top gallery-image" alt="{{ image.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ image.title }}</h5>
+                    <p class="card-text">{{ image.description }}</p>
+                    {% if user.is_authenticated %}
+                        <div class="mt-3 d-flex justify-content-end gap-2">
+                            <a href="{% url 'admin:main_galleryimage_change' image.id %}" 
+                               class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit"></i> Редактировать
+                            </a>
+                            <a href="{% url 'admin:main_galleryimage_delete' image.id %}" 
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Вы уверены, что хотите удалить это изображение?')">
+                                <i class="fas fa-trash"></i> Удалить
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                В галерее пока нет изображений.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .gallery-image {
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .card {
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .gap-2 {
+        gap: 0.5rem;
+    }
+</style>
+
+<!-- Добавьте Font Awesome для иконок -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
