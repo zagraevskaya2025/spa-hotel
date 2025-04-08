@@ -61,71 +61,40 @@ python manage.py runserver
 
 ## Структура проекта
 
-spa_hotel/
-
-├── main/ # Основное приложение
-
-│ ├── migrations/ # Миграции базы данных
-
-│ ├── admin.py # Настройки админ-панели
-
-│ ├── context_processors.py
-
-│ ├── forms.py # Формы
-
-│ ├── models.py # Модели данных
-
-│ ├── urls.py # URL маршруты
-
-│ └── views.py # Представления
-
-├── spa_hotel/ # Настройки проекта
-
-│ ├── settings.py # Основные настройки
-
-│ ├── urls.py # Главные URL маршруты
-
-│ └── wsgi.py # WSGI конфигурация
-
-├── static/ # Статические файлы
-
-│ ├── css/ # CSS стили
-
-│ ├── uploads/ # Загруженные изображения
-
-│ └── videos/ # Видеофайлы
-
-├── templates/ # HTML шаблоны
-
-│ ├── admin/ # Шаблоны админки
-
-│ │ ├── panel.html
-
-│ │ └── page_form.html
-
-│ ├── registration/ # Шаблоны авторизации
-
-│ │ └── logged_out.html
-
-│ ├── base.html # Базовый шаблон
-
-│ ├── contacts.html # Страница контактов
-
-│ ├── feedback.html # Страница отзывов
-
-│ ├── gallery.html # Галерея
-
-│ ├── index.html # Главная страница
-
-│ ├── login.html # Страница входа
-
-│ ├── page_view.html # Шаблон для отображения страниц
-
-│ └── services.html # Страница услуг
-
-├── manage.py # Скрипт управления
-
-├── requirements.txt # Зависимости проекта
-
-└── README.md # Документация
+spa-hotel/
+├── main/
+│   ├── migrations/
+│   ├── admin.py
+│   ├── context_processors.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── tasks.py          # Планировщик задач
+│   ├── tests.py          # Unit-тесты
+│   ├── urls.py
+│   └── views.py
+├── spa_hotel/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── static/
+│   ├── css/
+│   ├── uploads/
+│   └── videos/
+├── templates/
+│   ├── admin/
+│   │   ├── panel.html
+│   │   └── page_form.html
+│   ├── registration/
+│   │   └── logged_out.html
+│   ├── base.html
+│   ├── contacts.html
+│   ├── feedback.html
+│   ├── gallery.html
+│   ├── index.html
+│   ├── login.html
+│   ├── page_view.html
+│   └── services.html
+├── manage.py
+├── requirements.txt
+└── README.md
 
