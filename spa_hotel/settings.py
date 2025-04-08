@@ -40,10 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-<<<<<<< HEAD
-=======
     'background_task',
->>>>>>> 689b1ca (инициализация: добавлены правки для 2)
 ]
 
 MIDDLEWARE = [
@@ -84,12 +81,8 @@ WSGI_APPLICATION = 'spa_hotel.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-<<<<<<< HEAD
-        'NAME': BASE_DIR / 'db.sqlite3',
-=======
         'NAME': str(BASE_DIR / 'db.sqlite3'),
 
->>>>>>> 689b1ca (инициализация: добавлены правки для 2)
     }
 }
 
@@ -149,8 +142,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Для больших файлов (видео) может потребоваться увеличить максимальный размер загружаемых файлов
 DATA_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 52428800  # 50MB
-<<<<<<< HEAD
-=======
 
 
 # CRON задачи
@@ -165,4 +156,3 @@ CACHES = {
         "LOCATION": "unique-snowflake",
     }
 }
->>>>>>> 689b1ca (инициализация: добавлены правки для 2)
