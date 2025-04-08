@@ -63,38 +63,72 @@ python manage.py runserver
 
 spa-hotel/
 ├── main/
+
 │   ├── migrations/
+
 │   ├── admin.py
+
 │   ├── context_processors.py
+
 │   ├── forms.py
+
 │   ├── models.py
+
 │   ├── tasks.py          # Планировщик задач
+
 │   ├── tests.py          # Unit-тесты
+
 │   ├── urls.py
+
 │   └── views.py
+
 ├── spa_hotel/
+
 │   ├── settings.py
+
 │   ├── urls.py
+
 │   └── wsgi.py
+
 ├── static/
+
 │   ├── css/
+
 │   ├── uploads/
+
 │   └── videos/
+
 ├── templates/
+
 │   ├── admin/
+
 │   │   ├── panel.html
+
 │   │   └── page_form.html
+
 │   ├── registration/
+
 │   │   └── logged_out.html
+
 │   ├── base.html
+
 │   ├── contacts.html
+
 │   ├── feedback.html
+
 │   ├── gallery.html
+
 │   ├── index.html
+
 │   ├── login.html
+
 │   ├── page_view.html
+
 │   └── services.html
+
 ├── manage.py
+
 ├── requirements.txt
+
 └── README.md
 
