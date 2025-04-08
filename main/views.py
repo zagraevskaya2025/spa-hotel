@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import cache_page
+from django.contrib.auth import logout
+import time
+
 from .models import Page, Feedback, GalleryImage, Service
 from .forms import PageForm, FeedbackForm, GalleryImageForm
-from django.contrib.auth import logout
-from django.views.decorators.http import require_http_methods
+from .tasks import notify_admin  # фоновая задача
 
 def index(request):
     return render(request, 'index.html')
@@ -20,17 +24,27 @@ def services(request):
     services = Service.objects.all()
     return render(request, 'services.html', {'services': services})
 
+@cache_page(60)
 def feedback(request):
+    start = time.time()
+
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():
-            form.save()
+            feedback = form.save()
+
+            #  Запускаем фоновую задачу
+            notify_admin(feedback.name, feedback.email, feedback.message)
+
             messages.success(request, f'Спасибо, {form.cleaned_data["name"]}! Ваш отзыв сохранен.')
             return redirect('feedback')
     else:
         form = FeedbackForm()
-    
+
     feedbacks = Feedback.objects.all().order_by('-created_at')
+    elapsed = time.time() - start
+    print(f"[feedback] Загрузка заняла {elapsed:.4f} секунд")
+
     return render(request, 'feedback.html', {
         'form': form,
         'feedbacks': feedbacks
@@ -51,7 +65,6 @@ def page_create(request):
             return redirect('admin_panel')
     else:
         form = PageForm()
-    
     return render(request, 'admin/page_form.html', {'form': form})
 
 @login_required
@@ -65,11 +78,7 @@ def page_edit(request, slug):
             return redirect('admin_panel')
     else:
         form = PageForm(instance=page)
-    
-    return render(request, 'admin/page_form.html', {
-        'form': form,
-        'page': page
-    })
+    return render(request, 'admin/page_form.html', {'form': form, 'page': page})
 
 @login_required
 def page_delete(request, slug):
@@ -114,4 +123,4 @@ def delete_feedback(request, pk):
         feedback = get_object_or_404(Feedback, pk=pk)
         feedback.delete()
         messages.success(request, 'Отзыв успешно удален')
-    return redirect('feedback') 
+    return redirect('feedback')
