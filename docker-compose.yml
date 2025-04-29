@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: spa_hotel_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles  # сохраняем staticfiles отдельно
+    restart: always
+
+volumes:
+  static_volume:
